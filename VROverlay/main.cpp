@@ -1,10 +1,5 @@
-#pragma comment(lib, "d3d11.lib")
-#pragma comment(lib, "dxgi.lib")
-#pragma comment(lib, "d3dcompiler.lib")
-
 #include <openvr.h>
 #include <iostream>
-
 
 int main(int argc, char* argv[])
 {
@@ -16,5 +11,10 @@ int main(int argc, char* argv[])
         vr::VR_Shutdown();
         std::cerr << "Failed to initialise VR interface: " << VR_GetVRInitErrorAsSymbol(err) << std::endl;
         return -1;
+    }
+
+    while (true)
+    {
+        // todo update loop
     }
 }

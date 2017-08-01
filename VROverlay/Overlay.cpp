@@ -17,6 +17,7 @@ Overlay::~Overlay()
 {
     if (handle != nullptr) vr::VROverlay()->DestroyOverlay(*handle);
 
+
     delete handle;
 }
 
