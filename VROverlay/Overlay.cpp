@@ -1,10 +1,12 @@
 #include "Overlay.h"
 #include <iostream>
+#include <string>
 
-Overlay::Overlay(const char* name) : name(name)
+Overlay::Overlay(std::string name) : name(name)
 {
-    key = rand();
-    vr::VROverlayError err = vr::VROverlay()->CreateOverlay(key, name, handle);
+    key = "VROverlay" + std::to_string(rand());
+
+    vr::VROverlayError err = vr::VROverlay()->CreateOverlay(key.c_str(), name.c_str(), handle);
     if (err != vr::VROverlayError_None)
     {
         std::cerr << "Failed to create Overlay (" << name << "): " << vr::VROverlay()->GetOverlayErrorNameFromEnum(err) << std::endl;
@@ -64,10 +66,29 @@ void Overlay::SetWidth(float width)
     }
 }
 
+void Overlay::SetVisible(bool visible)
+{
+    this->visible = visible;
+
+    vr::EVROverlayError err = vr::VROverlayError_None;
+    if (visible) err = vr::VROverlay()->ShowOverlay(*handle);
+    else err = vr::VROverlay()->HideOverlay(*handle);
+    if (err != vr::VROverlayError_None)
+    {
+        std::cerr << "Failed to set overlay visibilty (" << name << "): " << vr::VROverlay()->GetOverlayErrorNameFromEnum(err) << std::endl;
+    }
+}
+
 void Overlay::SetTextureBounds(float uMin, float uMax, float vMin, float vMax)
 {
     this->texture_bounds.uMin = uMin;
     this->texture_bounds.uMax = uMax;
     this->texture_bounds.vMin = vMin;
     this->texture_bounds.vMax = vMax;
+
+    vr::EVROverlayError err = vr::VROverlay()->SetOverlayTextureBounds(*handle, &texture_bounds);
+    if (err != vr::VROverlayError_None)
+    {
+        std::cerr << "Failed to set overlay texture bounds (" << name << "): " << vr::VROverlay()->GetOverlayErrorNameFromEnum(err) << std::endl;
+    }
 }
