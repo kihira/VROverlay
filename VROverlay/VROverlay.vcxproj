@@ -157,10 +157,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Desktop.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Overlay.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Desktop.h" />
     <ClInclude Include="Overlay.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

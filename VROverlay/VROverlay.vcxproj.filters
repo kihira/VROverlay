@@ -24,9 +24,15 @@
     <ClCompile Include="Overlay.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Desktop.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Overlay.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Desktop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
